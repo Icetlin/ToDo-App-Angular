@@ -1,0 +1,75 @@
+<div class="mainPage">
+  <div class="mainPage_firstRow">
+    <app-top-bar class="app_topBar"></app-top-bar>
+  </div>
+  <div class="mainPage_secondRow">
+    <div class="mainPage_firstColumn">
+      <app-side-bar class="app_sideBar"></app-side-bar>
+    </div>
+    <div class="mainPage_secondColumn">
+      <div class="app_tasksPageHeader">
+        <div class="app_tasksPageTitle">
+          <div *ngFor="let taskList of taskLists">
+            <div *ngIf="taskList.value === tasksType">
+              <div  *ngIf="tasksType !== 'all' && tasksType !== 'favorites' && tasksType !== 'checked'" style="color:{{taskList.color}}">{{tasksType | titlecase}}</div>
+            </div>
+          </div>
+          <div *ngIf="tasksType === 'all'"> Все задачи</div>
+          <div *ngIf="tasksType === 'favorites'"> Избранные</div>
+          <div *ngIf="tasksType === 'checked'"> Выполненные</div>
+
+        </div>
+        <div class="app_tasksPageOptionButton"></div>
+      </div>
+      <div class="app_tasks">
+      <div *ngIf="tasksType === 'all'">
+        <div *ngFor="let task of tasks.reverse()">
+          <div class="app_task" (click)="selectedToggle(task.id)" [ngClass]="{'app_task-selected': task.selected}">
+            <div (click)="changeTaskStatus(task.id, task.checked)" class="task_check_button" [ngClass]="{'app_task-checked': task.checked}">☑</div>
+            <div [routerLink]="['/tasks/', 'all', task.id]"  class="task_textPreview" [ngClass]="{'app_task-ready': task.checked}" [innerHTML]="task?.value"></div>
+            <div (click)="favoritesToggle(task.id)" class="task_favorite_button" [ngClass]="{'app_task-InFavorites': task.favorites}">☆</div>
+          </div>
+        </div>
+        <div routerLink="/tasks" *ngIf="tasks.length > 1" class="app_deleteAllTasks" (click)="deleteAllTasks()">Удалить все задачи</div>
+      </div>
+
+      <div *ngIf="tasksType === 'favorites'">
+        <div *ngFor="let task of tasks.reverse()">
+          <div class="app_task" *ngIf="task.favorites" (click)="selectedToggle(task.id)" [ngClass]="{'app_task-selected': task.selected}">
+            <div (click)="changeTaskStatus(task.id, task.checked)" class="task_check_button" [ngClass]="{'app_task-checked': task.checked}">☑</div>
+            <div [routerLink]="['/tasks/', 'favorites', task.id]" class="task_textPreview" [ngClass]="{'app_task-ready': task.checked}" [innerHTML]="(task?.value | slice:0:50)">{{selected}}</div>
+            <div (click)="favoritesToggle(task.id)" class="task_favorite_button" [ngClass]="{'app_task-InFavorites': task.favorites}">☆</div>
+          </div>
+        </div>
+      </div>
+
+
+      <div *ngIf="tasksType === 'checked'">
+        <div *ngFor="let task of tasks.reverse()">
+          <div class="app_task" *ngIf="task.checked" (click)="selectedToggle(task.id)" [ngClass]="{'app_task-selected': task.selected}">
+            <div (click)="changeTaskStatus(task.id, task.checked)" class="task_check_button" [ngClass]="{'app_task-checked': task.checked}">☑</div>
+            <div [routerLink]="['/tasks/', 'checked', task.id]"class="task_textPreview" [ngClass]="{'app_task-ready': task.checked}" [innerHTML]="(task?.value | slice:0:50)"></div>
+            <div (click)="favoritesToggle(task.id)" class="task_favorite_button" [ngClass]="{'app_task-InFavorites': task.favorites}">☆</div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="tasksType !== 'checked' && tasksType !== 'favorites' && tasksType !== 'all'">
+        <div *ngFor="let task of tasks.reverse()">
+          <div class="app_task" *ngIf="tasksType === task.list" (click)="selectedToggle(task.id)" [ngClass]="{'app_task-selected': task.selected}">
+            <div (click)="changeTaskStatus(task.id, task.checked)" class="task_check_button" [ngClass]="{'app_task-checked': task.checked}">☑</div>
+            <div [routerLink]="['/tasks/', tasksType, task.id]"class="task_textPreview" [ngClass]="{'app_task-ready': task.checked}" [innerHTML]="(task?.value | slice:0:50)"></div>
+            <div (click)="favoritesToggle(task.id)" class="task_favorite_button" [ngClass]="{'app_task-InFavorites': task.favorites}">☆</div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+    </div>
+    <ng-content></ng-content>
+  </div>
+</div>
+
+
+
+

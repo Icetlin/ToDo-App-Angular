@@ -1,0 +1,4 @@
+ <input name="newTask_input" class="newTask_input" type="text" [placeholder]=newTaskPlaceholder (keyup.enter)="createTask()" [(ngModel)]="inputValue" minlength="4" autocomplete="off">
+ <div (click)="newFavoritesToggle()" class="newTask_favorite_button"  [ngClass]="{'task-InFavorites': favorites}">☆</div>
+
+

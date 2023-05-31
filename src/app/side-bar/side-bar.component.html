@@ -1,0 +1,19 @@
+ <app-new-task class="app_newTask"></app-new-task>
+  <nav class="app_nav" (click)="clearSelected()">
+      <a class="app_NavItem" routerLink="/tasks/all">
+        <div class="app_NavItemName">Все задачи</div>
+        <div class="app_tasksCount">{{tasks.length}}</div>
+      </a>
+      <a class="app_NavItem" routerLink="/tasks/favorites">
+        <div class="app_NavItemName">Избранные</div>
+        <div class="app_tasksCount">{{tasks | filter:'favorites'}}</div>
+      </a>
+      <a class="app_NavItem" routerLink="/tasks/checked">
+        <div class="app_NavItemName">Выполненные</div>
+        <div class="app_tasksCount">{{tasks | filter:'checked'}}</div>
+      </a>
+  </nav>
+ <app-new-task-list class="app_newTaskList"></app-new-task-list>
+ <app-task-lists class="app_taskLists"></app-task-lists>
+
+

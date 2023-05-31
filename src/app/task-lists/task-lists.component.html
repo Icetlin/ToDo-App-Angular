@@ -1,0 +1,9 @@
+<div *ngFor="let taskList of taskLists.reverse()">
+  <div class="app_taskList">
+    <div class="app_TaskListColorTag" style="background-color:{{taskList.color}}"></div>
+    <div routerLink="/tasks/{{taskList.value}}" class="app_taskListName">{{taskList.value | titlecase}}</div>
+    <div class="app_deleteTaskList" (click)="deleteTaskList(taskList.id)">×</div>
+  </div>
+</div>
+<div *ngIf="taskLists.length > 1" class="app_DeleteAllTaskLists" (click)="deleteAllTaskLists()">Удалить</div>
+

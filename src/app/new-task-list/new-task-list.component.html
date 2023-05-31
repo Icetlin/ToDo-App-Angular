@@ -1,0 +1,6 @@
+<div class="app_newTaskListContent">
+  <input type="text" name="app_NewTaskListInput" class="app_NewTaskListInput" placeholder="Добавить лист" (keyup.enter)="createTaskList()" [(ngModel)]="inputValue" maxlength="20">
+  <div class="app_newTaskListColorColumn">
+    <input class="app_newTaskListColorPickerButton" [(colorPicker)]="colorOfNewList" [style.background]="colorOfNewList"/>
+  </div>
+</div>

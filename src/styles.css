@@ -1,1 +1,405 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/cdk/overlay-prebuilt.css';
+
+.html, body {
+  height: 100%;
+  margin: 0;
+}
+.mainPage{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100vh;
+  position: relative;
+  background-color: rgb(250,249,248);
+}
+.mainPage_firstRow{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3em;
+}
+.mainPage_secondRow{
+  display: flex;
+  will-change: width;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  height: calc(100vh - 3em);
+
+}
+.mainPage_firstColumn{
+  display: flex;
+  flex: 0 0 16em;
+  float: left;
+
+}
+.mainPage_secondColumn{
+  width: auto;
+  overflow: auto;
+  min-width: 12em;
+}
+.mainPage_thirdColumn{
+  display: flex;
+  flex: 0 0 16em;
+}
+.app_sideBar{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  flex: 0 0 100%;
+  align-items: center;
+  user-select: none;
+}
+.app_nav{
+  display: flex;
+  flex-direction: column;
+
+}
+.app_NavItem{
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 3em;
+  text-decoration: none;
+  color: black;
+  align-items: center;
+  width: 12em;padding-left: 1em;
+}
+  .app_NavItem:hover{
+    background-color: #e1e1e1;
+  }
+  .app_NavItemName{
+    width: 80%;
+  }
+  .app_tasksCount{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+  }
+.app_topBar{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: royalblue;
+  color: white;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.app_task{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 3em;
+  box-shadow:  0px 8px 5px -5px rgba(0,0,0,0.05);
+  border-radius: 0.25em;
+  text-overflow: clip;
+  margin-top: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+  background-color: white;
+  cursor: pointer;
+  user-select: none;
+}
+  .app_task:hover{
+    background-color: #ececec;
+  }
+  .app_task:active{
+    background-color: aliceblue;
+}
+  .task_textPreview{
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    min-width: 6em;
+    width: calc(100vw - 23.2em);
+    padding-top: 0.8em;
+  }
+  .task_check_button{
+    margin-top: 0.10em;
+    width: 2em;
+    min-width: 2em;
+    text-align: center;
+    font-size: 2em;
+    color: black;
+
+  }
+  .task_favorite_button{
+    font-size: 1.6em;
+    margin-top: 0.15em;
+    width: 2.5em;
+    min-width: 2em;
+    text-align: center;
+    color: black;
+  }
+    .app_task-checked{
+      color: rgb(37,100,207);
+    }
+    .app_task-ready{
+
+    }
+    .app_task-InFavorites{
+      color: rgb(37,100,207);
+    }
+
+.app_newTask{
+  display: flex;
+  height: 3em;
+  width: 12em;
+  padding-left: 0.6em;
+}
+.newTask_input{
+  height: 100%;
+  width: 80%;
+  box-sizing: border-box;
+  border: none;
+  background-color: rgb(250,249,248);
+}
+
+.newTask_input:focus{
+  outline: none;
+}
+.newTask_input::placeholder{
+  color: black;
+}
+.newTask_input:focus::placeholder{
+  color: grey;
+}
+.newTask_favorite_button{
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  font-size: 1.5em;
+  margin-top: 0.3em;
+}
+
+.app_deleteAllTasks{
+  /*display: flex;*/
+  margin: 1em;
+  text-align: center;
+  cursor: pointer;
+}
+.app_task-selected{
+  background-color: aliceblue;
+}
+.app_task-selected:hover{
+  background-color: aliceblue;
+}
+.app_detailedTask{
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 1em);
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+}
+  .detailedTask_input{
+    box-sizing: border-box;
+    resize: none;
+    background-color: white;
+    border: none;
+    height: calc(100vh - 9em);
+    width: 100%;
+    padding: 1em;
+    border-radius: 0.25em;
+    cursor: pointer;
+  }
+    .detailedTask_input:focus{
+      outline: none;
+      cursor: text;
+    }
+    .detailedTask_input:hover{
+      background-color: #ececec;
+    }
+  .detailedTask_footer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 3em;
+    color: #888888;
+    justify-content: center;
+    cursor: pointer;
+  }
+    .detailedTask_hideButton{
+      margin-top: 0.11em;
+      width: 2em;
+      text-align: center;
+      font-size: 1.8em;
+    }
+    .detailedTask_taskDateSign{
+      text-align: center;
+      margin-top: 0.5em;
+      font-size: 0.9em;
+      width: auto;
+    }
+    .detailedTask_taskDeleteButton{
+      margin-top: 0.22em;
+      width: 2em;
+      text-align: center;
+      font-size: 1.8em;
+      font-weight: lighter;
+    }
+
+.deleteConfirmation{
+    position: fixed;
+    display: flex;
+    width: calc(100% - 10em);
+    height: 10em;
+    background-color: #ffffff;
+    flex-direction: row;
+    top: calc(50vh - 5em);
+    left: 5em;
+    border-radius: 0.25em;
+    user-select: none;
+    cursor: pointer;
+  }
+  .deleteConfirmation_text{
+    display: flex;
+    width: 60%;
+    padding: 1em;
+    border-radius: 0.25em;
+    overflow: auto;
+    align-items: center;
+    justify-content: center;
+  }
+  .deleteConfirmation_buttons{
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+    .deleteConfirmation_confirmButton{
+      display: flex;
+      background-color: rgb(37,100,207);
+      height: 2em;
+      width: 6em;
+      margin-right: 1em;
+      border-radius: 0.25em;
+      vertical-align: center;
+      align-items: center;
+      justify-content: center;
+
+
+    }
+    .deleteConfirmation_cancelButton{
+      display: flex;
+      background-color: #888888;
+      height: 2em;
+      width: 6em;
+      margin-right: 1em;
+      border-radius: 0.25em;
+      align-items: center;
+      justify-content: center;
+    }
+.app_newTaskList{
+  cursor: pointer;
+  height: 3em;
+  width: 12em;
+  padding-left: 1em;
+  border-top: #888888 solid 0.1em;
+  margin-top: 0.5em;
+  padding-top: 0.5em;
+}
+.app_newTaskListContent{
+  display: flex;
+  flex-direction: row;
+}
+  .app_TaskListColorTag{
+    display: flex;
+    width:1%;
+    height: 100%;
+  }
+  .app_NewTaskListInput{
+    display: flex;
+    align-items: center;
+    height: 3.65em;
+    justify-content: center;
+    box-sizing: border-box;
+    border: none;
+    background-color: rgb(250,249,248);
+    width: 79%;
+  }
+  .app_newTaskListColorColumn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+  }
+  .app_newTaskListColorPickerButton{
+    width: 1em;
+    cursor: pointer;
+    color: transparent;
+    /*border: none;*/
+    border-width: 0.1em;
+    border-radius: 0.2em;
+  }
+    .app_NewTaskListInput:focus{
+      outline: none;
+    }
+    .app_NewTaskListInput::placeholder{
+      color: black;
+    }
+    .app_NewTaskListInput:focus::placeholder{
+      color: #888888;
+    }
+.app_taskLists{
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+  .app_taskList{
+    display: flex;
+    position: relative;
+    height: 3em;
+    text-decoration: none;
+    color: black;
+    align-items: center;
+    width: 12em;
+    padding-left: 1em;
+  }
+    .app_taskListName{
+      display: flex;
+      width: 80%;
+      text-align: center;
+      padding-left: 1em;
+    }
+    .app_deleteTaskList{
+      width: 20%;
+      text-align: center;
+    }
+
+  .app_DeleteAllTaskLists{
+    display: flex;
+    height: 3em;
+    align-items: center;
+    justify-content: center;
+
+  }
+  .app_tasksPageHeader{
+    display: flex;
+    height: 3em;
+    background-color: transparent;
+    margin: 1em;
+    overflow: hidden;
+  }
+    .app_tasksPageTitle{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: rgb(37,100,207);
+      font-weight: bolder;
+      font-size: 1.4em;
+      padding-left: 0.3em;
+    }
+    .app_tasksPageOptionButton{
+      display: flex;
+    }

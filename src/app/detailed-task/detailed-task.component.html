@@ -1,0 +1,32 @@
+<div *ngFor="let task of tasks">
+  <div *ngIf="task.id === selectedId">
+    <textarea [ngClass]="{'task-ready': task.checked}" name="task" class="detailedTask_input" type="text" value={{task.value}} [(ngModel)]="task.value"></textarea>
+
+    <div class="detailedTask_footer">
+      <div class="detailedTask_hideButton" routerLink="../">◧</div>
+      <div class="detailedTask_taskDateSign">Создано {{task.date}}</div>
+      <div class="detailedTask_taskDeleteButton"
+           (click)="isDeleteConfirmationOpened = !isDeleteConfirmationOpened"
+           cdkOverlayOrigin
+           #trigger="cdkOverlayOrigin">✖</div>
+    </div>
+
+    <ng-template
+                 cdkConnectedOverlay
+                 [cdkConnectedOverlayOrigin]="trigger"
+                 [cdkConnectedOverlayOpen]="isDeleteConfirmationOpened"
+                 (overlayOutsideClick)="isDeleteConfirmationOpened = false"
+                 [cdkConnectedOverlayHasBackdrop]="true">
+
+      <div class="deleteConfirmation">
+        <div class="deleteConfirmation_text">Удалить задачу '{{task.value | slice:0:30}}...' ?</div>
+        <div class="deleteConfirmation_buttons">
+          <div class="deleteConfirmation_confirmButton" (click)="deleteTask(task.id)">Удалить</div>
+          <div class="deleteConfirmation_cancelButton" (click)="isDeleteConfirmationOpened = false">Отмена</div>
+        </div>
+      </div>
+    </ng-template>
+
+  </div>
+</div>
+
